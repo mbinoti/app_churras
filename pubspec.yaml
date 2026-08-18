@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  path: ^1.9.1
+  provider: ^6.1.5+1
+  sqflite: ^2.4.3
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +20,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/barbecue_hero.png
+    - assets/images/profile_avatar.png

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+import 'app/app.dart';
+import 'data/datasources/local/app_database.dart';
+import 'data/datasources/local/evento_local_datasource.dart';
+import 'data/repositories/evento_repository_impl.dart';
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  final appDatabase = AppDatabase();
+  final eventoDataSource = SqliteEventoLocalDataSource(appDatabase);
+  final eventoRepository = EventoRepositoryImpl(eventoDataSource);
+
+  runApp(ChurrasFacilApp(eventoRepository: eventoRepository));
 }
