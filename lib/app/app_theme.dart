@@ -1,70 +1,71 @@
 import 'package:flutter/material.dart';
 
 ThemeData criarTema() {
-  const terracota = Color(0xFF8E3B2F);
-  const salvia = Color(0xFF6D8B74);
-  const dourado = Color(0xFFD6A84F);
-  const espresso = Color(0xFF2F2723);
-  const creme = Color(0xFFFAF7F2);
-  const bege = Color(0xFFF1ECE4);
-  const cremeBranco = Color(0xFFFFFDF9);
-  const terracotaClara = Color(0xFFF3D5CE);
-  const salviaClara = Color(0xFFDCE8DE);
-  const douradoClaro = Color(0xFFF5E4B5);
+  const vermelho = Color(0xFFA7120D);
+  const vermelhoEscuro = Color(0xFF8F0D08);
+  const laranja = Color(0xFFFF7A12);
+  const mostarda = Color(0xFF8A6900);
+  const espresso = Color(0xFF3B2B2A);
+  const fundo = Color(0xFFFFF8FF);
+  const superficie = Color(0xFFFFFBFF);
+  const navBackground = Color(0xFFF6EFF7);
+  const vermelhoClaro = Color(0xFFF8D9D5);
+  const laranjaClara = Color(0xFFFFE5D3);
+  const mostardaClara = Color(0xFFF3E5B8);
 
   final esquema =
       ColorScheme.fromSeed(
-        seedColor: terracota,
+        seedColor: vermelho,
         brightness: Brightness.light,
       ).copyWith(
-        primary: terracota,
+        primary: vermelho,
         onPrimary: Colors.white,
-        primaryContainer: terracotaClara,
-        onPrimaryContainer: const Color(0xFF5F1B12),
-        secondary: salvia,
+        primaryContainer: vermelhoClaro,
+        onPrimaryContainer: vermelhoEscuro,
+        secondary: laranja,
         onSecondary: Colors.white,
-        secondaryContainer: salviaClara,
-        onSecondaryContainer: const Color(0xFF263B2C),
-        tertiary: dourado,
-        onTertiary: const Color(0xFF3F2E00),
-        tertiaryContainer: douradoClaro,
-        onTertiaryContainer: const Color(0xFF2F2400),
-        surface: creme,
+        secondaryContainer: laranjaClara,
+        onSecondaryContainer: const Color(0xFF7B2D0D),
+        tertiary: mostarda,
+        onTertiary: Colors.white,
+        tertiaryContainer: mostardaClara,
+        onTertiaryContainer: const Color(0xFF5E4700),
+        surface: fundo,
         onSurface: espresso,
         onSurfaceVariant: espresso,
-        outline: const Color(0xFFCFC4B8),
-        outlineVariant: const Color(0xFFE3DAD0),
+        outline: const Color(0xFFCDB8B7),
+        outlineVariant: const Color(0xFFE7DDE7),
       );
 
   return ThemeData(
     useMaterial3: true,
     colorScheme: esquema,
-    scaffoldBackgroundColor: creme,
-    fontFamily: 'Roboto',
+    scaffoldBackgroundColor: fundo,
+    fontFamily: 'Avenir Next',
     textTheme: const TextTheme(
       headlineLarge: TextStyle(
-        fontSize: 42,
-        height: 1.05,
+        fontSize: 43,
+        height: 1.04,
         fontWeight: FontWeight.w800,
-        letterSpacing: -1.2,
+        letterSpacing: -1.5,
       ),
       headlineMedium: TextStyle(
-        fontSize: 28,
+        fontSize: 30,
         fontWeight: FontWeight.w800,
-        letterSpacing: -0.4,
+        letterSpacing: -0.7,
       ),
       titleLarge: TextStyle(
-        fontSize: 25,
+        fontSize: 27,
         fontWeight: FontWeight.w800,
-        letterSpacing: -0.3,
+        letterSpacing: -0.5,
       ),
-      titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-      bodyLarge: TextStyle(fontSize: 17, height: 1.25),
-      bodyMedium: TextStyle(fontSize: 15, height: 1.25),
+      titleMedium: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+      bodyLarge: TextStyle(fontSize: 18, height: 1.25),
+      bodyMedium: TextStyle(fontSize: 16, height: 1.25),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: cremeBranco,
+      fillColor: superficie,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(color: espresso.withValues(alpha: 0.22)),
@@ -75,16 +76,16 @@ ThemeData criarTema() {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: terracota, width: 2),
+        borderSide: const BorderSide(color: vermelho, width: 2),
       ),
     ),
     cardTheme: CardThemeData(
       elevation: 0,
-      color: cremeBranco,
+      color: superficie,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: const Color(0xFFD9D0C4).withValues(alpha: 0.8)),
+        borderRadius: BorderRadius.circular(22),
+        side: BorderSide(color: const Color(0xFFE0CACA).withValues(alpha: 0.9)),
       ),
     ),
     appBarTheme: const AppBarTheme(
@@ -93,16 +94,16 @@ ThemeData criarTema() {
       elevation: 0,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      height: 78,
-      backgroundColor: bege,
-      indicatorColor: terracota,
+      height: 84,
+      backgroundColor: navBackground,
+      indicatorColor: laranja,
       indicatorShape: const StadiumBorder(),
       labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
       iconTheme: WidgetStateProperty.resolveWith((states) {
         final selecionado = states.contains(WidgetState.selected);
         return IconThemeData(
-          color: selecionado ? Colors.white : espresso,
-          size: 25,
+          color: selecionado ? espresso : const Color(0xFF634846),
+          size: 24,
         );
       }),
       labelTextStyle: WidgetStatePropertyAll(
@@ -110,10 +111,10 @@ ThemeData criarTema() {
       ),
     ),
     sliderTheme: SliderThemeData(
-      activeTrackColor: terracota,
-      inactiveTrackColor: const Color(0xFFE3DCD3),
-      thumbColor: terracota,
-      overlayColor: terracota.withValues(alpha: 0.12),
+      activeTrackColor: laranja,
+      inactiveTrackColor: const Color(0xFFE3DDE4),
+      thumbColor: laranja,
+      overlayColor: laranja.withValues(alpha: 0.12),
       trackHeight: 6,
     ),
   );

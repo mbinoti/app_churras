@@ -221,6 +221,7 @@ Home
 
 - adicionar adultos e crianças;
 - criar catálogo de itens;
+- permitir configurar regras e preços do catálogo;
 - permitir itens personalizados;
 - implementar o `EstimationService`;
 - exibir o resumo do evento.
@@ -323,7 +324,7 @@ Representa uma despesa real registrada pelo usuário. O custo estimado dos itens
 
 Tabela SQLite: despesas.
 
-Campos: id, evento_id, descricao, valor_centavos, categoria, pagador_nome, pagador_id opcional, data_despesa e observacoes opcional.
+Campos: id, evento_id, descricao, valor_centavos, categoria, pagador_nome, pagador_id opcional, data_despesa, observacoes opcional e status de pagamento.
 
 ### 10.5 Acerto de rateio
 
@@ -353,7 +354,7 @@ Não é necessário criar tabelas próprias para:
 - progresso de compras: itens comprados dividido pelo total;
 - resumo por categoria: agrupamento de itens_evento por categoria.
 
-O catálogo inicial pode ser uma lista estática no código. Só será necessário criar itens_catalogo e regras de consumo persistidas se o usuário puder editar o catálogo ou suas regras.
+O catálogo inicial é carregado de `assets/data/catalogo_itens.json` e persistido na tabela `catalogo_itens` na primeira execução. As regras de consumo e os preços podem ser editados pelo usuário e não ficam fixos na lógica do aplicativo.
 
 O avatar, a saudação e as configurações visuais não exigem uma entidade de usuário enquanto login e sincronização estiverem fora do MVP.
 
@@ -375,7 +376,7 @@ Tabela itens_evento: id TEXT PRIMARY KEY, evento_id TEXT NOT NULL, nome TEXT NOT
 
 Tabela tarefas: id TEXT PRIMARY KEY, evento_id TEXT NOT NULL, titulo TEXT NOT NULL, descricao TEXT, responsavel_nome TEXT, responsavel_id TEXT, data_limite TEXT e status TEXT NOT NULL.
 
-Tabela despesas: id TEXT PRIMARY KEY, evento_id TEXT NOT NULL, descricao TEXT NOT NULL, valor_centavos INTEGER NOT NULL, categoria TEXT NOT NULL, pagador_nome TEXT NOT NULL, pagador_id TEXT, data_despesa TEXT NOT NULL e observacoes TEXT.
+Tabela despesas: id TEXT PRIMARY KEY, evento_id TEXT NOT NULL, descricao TEXT NOT NULL, valor_centavos INTEGER NOT NULL, categoria TEXT NOT NULL, pagador_nome TEXT NOT NULL, pagador_id TEXT, data_despesa TEXT NOT NULL, observacoes TEXT e status TEXT NOT NULL.
 
 Tabela acertos: id TEXT PRIMARY KEY, evento_id TEXT NOT NULL, devedor_id TEXT NOT NULL, credor_id TEXT NOT NULL, valor_centavos INTEGER NOT NULL e status TEXT NOT NULL.
 
@@ -393,5 +394,5 @@ As imagens devem ser tratadas como evidência visual, não como requisitos defin
 2. O usuário cadastrará os nomes dos convidados? A tela de custos exige nomes para calcular e exibir o rateio.
 3. O número de convidados confirmados será digitado manualmente ou calculado a partir de participantes?
 4. Responsáveis por tarefas serão convidados cadastrados ou apenas nomes livres?
-5. O catálogo e as regras de consumo serão fixos no código ou editáveis pelo usuário?
+5. O catálogo e as regras de consumo são editáveis pelo usuário; o JSON contém apenas os valores iniciais.
 6. Os textos exibidos nas imagens serão traduzidos integralmente para português no aplicativo?

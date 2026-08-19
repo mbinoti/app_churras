@@ -13,7 +13,9 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('exibe estado vazio e navega pelos placeholders', (tester) async {
+  testWidgets('exibe estado vazio e navega para a lista de compras', (
+    tester,
+  ) async {
     await pumpApp(tester);
 
     expect(find.text('Você ainda não tem eventos'), findsOneWidget);
@@ -22,10 +24,8 @@ void main() {
     await tester.tap(find.text('Compras'));
     await tester.pumpAndSettle();
 
-    expect(
-      find.text('Esta área estará disponível em uma próxima sprint.'),
-      findsOneWidget,
-    );
+    expect(find.text('Lista de compras'), findsOneWidget);
+    expect(find.text('Crie um evento para começar'), findsOneWidget);
   });
 
   testWidgets('valida nome e data no formulário de evento', (tester) async {
@@ -87,8 +87,13 @@ void main() {
       'Evento atualizado',
     );
     final salvar = find.byKey(const Key('salvarEventoButton'));
-    await tester.ensureVisible(salvar);
-    await tester.pumpAndSettle();
+    tester.binding.focusManager.primaryFocus?.unfocus();
+    await tester.pump();
+    await tester.drag(
+      find.byType(SingleChildScrollView),
+      const Offset(0, -1000),
+    );
+    await tester.pump();
     await tester.tap(salvar);
     await tester.pumpAndSettle();
 

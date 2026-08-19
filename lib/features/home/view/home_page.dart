@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+              padding: const EdgeInsets.fromLTRB(24, 18, 24, 0),
               sliver: SliverToBoxAdapter(
                 child: _HomeHeader(
                   onNovoEvento: () => _abrirPlanejamento(context),
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
     if (!temEventos) {
       return [
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(20, 26, 20, 8),
+          padding: const EdgeInsets.fromLTRB(24, 28, 24, 8),
           sliver: SliverToBoxAdapter(
             child: Text(
               'Próximos eventos',
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
 
     return [
       SliverPadding(
-        padding: const EdgeInsets.fromLTRB(20, 26, 20, 0),
+        padding: const EdgeInsets.fromLTRB(24, 28, 24, 0),
         sliver: SliverToBoxAdapter(
           child: Text(
             'Próximos eventos',
@@ -122,7 +122,7 @@ class HomePage extends StatelessWidget {
       ),
       if (proximos.isEmpty)
         const SliverPadding(
-          padding: EdgeInsets.fromLTRB(20, 12, 20, 0),
+          padding: EdgeInsets.fromLTRB(24, 12, 24, 0),
           sliver: SliverToBoxAdapter(
             child: Text('Nenhum evento futuro por enquanto.'),
           ),
@@ -130,7 +130,7 @@ class HomePage extends StatelessWidget {
       else
         _listaProximos(context, proximos),
       SliverPadding(
-        padding: const EdgeInsets.fromLTRB(20, 28, 20, 0),
+        padding: const EdgeInsets.fromLTRB(24, 34, 24, 0),
         sliver: SliverToBoxAdapter(
           child: Text(
             'Eventos recentes',
@@ -142,7 +142,7 @@ class HomePage extends StatelessWidget {
       ),
       if (recentes.isEmpty)
         const SliverPadding(
-          padding: EdgeInsets.fromLTRB(20, 12, 20, 32),
+          padding: EdgeInsets.fromLTRB(24, 12, 24, 32),
           sliver: SliverToBoxAdapter(
             child: Text('Seus eventos anteriores aparecerão aqui.'),
           ),
@@ -154,10 +154,10 @@ class HomePage extends StatelessWidget {
 
   Widget _listaProximos(BuildContext context, List<Evento> eventos) {
     return SliverPadding(
-      padding: const EdgeInsets.fromLTRB(20, 14, 0, 0),
+      padding: const EdgeInsets.fromLTRB(24, 16, 0, 0),
       sliver: SliverToBoxAdapter(
         child: SizedBox(
-          height: 192,
+          height: 210,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: eventos.length,
@@ -170,7 +170,7 @@ class HomePage extends StatelessWidget {
                 onExcluir: () => _confirmarExclusao(context, evento),
               );
             },
-            separatorBuilder: (_, index) => const SizedBox(width: 14),
+            separatorBuilder: (_, index) => const SizedBox(width: 16),
           ),
         ),
       ),
@@ -183,7 +183,7 @@ class HomePage extends StatelessWidget {
     double paddingBottom = 0,
   }) {
     return SliverPadding(
-      padding: EdgeInsets.fromLTRB(20, 14, 20, paddingBottom),
+      padding: EdgeInsets.fromLTRB(24, 16, 24, paddingBottom),
       sliver: SliverList.separated(
         itemCount: eventos.length,
         itemBuilder: (context, index) {
@@ -212,7 +212,7 @@ class _HomeHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AppHeader(),
-        const SizedBox(height: 28),
+        const SizedBox(height: 34),
         Text('Olá, João!', style: Theme.of(context).textTheme.headlineLarge),
         const SizedBox(height: 8),
         Text(
@@ -221,7 +221,7 @@ class _HomeHeader extends StatelessWidget {
             context,
           ).textTheme.bodyLarge?.copyWith(color: esquema.onSurfaceVariant),
         ),
-        const SizedBox(height: 22),
+        const SizedBox(height: 26),
         _PlanEventBanner(onPressed: onNovoEvento),
       ],
     );
@@ -246,13 +246,13 @@ class _PlanEventBanner extends StatelessWidget {
           height: 166,
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(28, 22, 24, 20),
+            padding: const EdgeInsets.fromLTRB(24, 18, 20, 18),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 54,
-                  height: 54,
+                  width: 48,
+                  height: 48,
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
                     shape: BoxShape.circle,
@@ -260,7 +260,7 @@ class _PlanEventBanner extends StatelessWidget {
                   child: const Icon(
                     Icons.local_fire_department_outlined,
                     color: Colors.white,
-                    size: 30,
+                    size: 28,
                   ),
                 ),
                 const Spacer(),

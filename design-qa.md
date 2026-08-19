@@ -1,4 +1,4 @@
-# Design QA — Sprint 1
+# Design QA — Referências visuais do app
 
 ## Referências e capturas
 
@@ -6,11 +6,11 @@
 - Planejamento: `docs/images/configurar evento.jpg` — 645 × 1600 px.
 - Home populada implementada: `test/design-qa/home-implementation.png` — 645 × 1600 px.
 - Planejamento implementado: `test/design-qa/planning-implementation.png` — 645 × 1600 px.
-- Captura adicional da Home no simulador iPhone 17 Pro Max: `/tmp/churras-home.png` — 1320 × 2868 px, incluindo a moldura/status do simulador.
+- Captura atual da Home no simulador iPhone 17 Pro Max: `/tmp/churras-home-current.png` — captura real com status bar e navegação do simulador.
 
 ## Estado comparado
 
-As capturas de QA usam a mesma viewport lógica de 645 × 1600 px e dados locais de exemplo para comparar a Home populada e o formulário de planejamento. A captura real do simulador também foi inspecionada para validar a Home em execução.
+As capturas de referência foram usadas para alinhar Home, Planejamento, Compras, Tarefas e Custos. A captura real do simulador foi inspecionada para validar a Home em execução; os fluxos das outras abas foram cobertos pelos testes de widgets com dados locais.
 
 ## Resultado da comparação
 
@@ -19,7 +19,7 @@ As capturas de QA usam a mesma viewport lógica de 645 × 1600 px e dados locais
 - Cores: fundo rosado claro, vermelho escuro da marca, laranja das ações e tons terrosos foram convertidos em tokens do tema Flutter.
 - Imagens: o cabeçalho usa avatar local e o planejamento usa fotografia local de churrasco em card com overlay, mantendo a direção visual das referências.
 - Ícones: navegação, configurações, fogo, participantes, duração e histórico usam ícones Material consistentes e com alvos de toque adequados.
-- Conteúdo: Compras, Tarefas e Custos continuam placeholders por decisão de escopo da Sprint 1; Home e Planejamento são funcionais.
+- Conteúdo: Compras, Tarefas e Custos agora possuem telas funcionais com dados locais, controles de seleção e ações principais.
 - Responsividade: o dropdown de tipo foi configurado como expandido após a captura encontrar overflow em viewport móvel.
 
 ## Diferenças aceitáveis
@@ -34,6 +34,9 @@ As capturas de QA usam a mesma viewport lógica de 645 × 1600 px e dados locais
 2. O formulário inicialmente não era totalmente materializado no teste por ser uma lista lazy; foi trocado por uma rolagem simples, adequada ao tamanho do formulário.
 3. O campo de tipo apresentou overflow em duas colunas; `isExpanded: true` eliminou o clipping.
 4. A captura posterior não apresentou novos problemas P0, P1 ou P2.
+5. O tema global foi alinhado ao fundo rosado, vermelho da marca, laranja de ação, cards arredondados e navegação inferior das referências.
+6. Os cards e banners foram redimensionados em pixels lógicos para preservar a navegação em viewport móvel sem overflow.
+7. A captura real do simulador confirmou a composição da Home com cabeçalho, saudação, CTA, evento e navegação inferior.
 
 ## Resultado final
 

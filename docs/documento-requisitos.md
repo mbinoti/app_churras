@@ -501,6 +501,7 @@ categoria: CategoriaItem
 pagador_nome: String
 pagador_id: String?
 data_despesa: DateTime
+status: pendente | pago
 observacoes: String?
 ~~~
 

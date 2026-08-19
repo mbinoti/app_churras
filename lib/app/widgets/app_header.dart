@@ -9,6 +9,7 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final esquema = Theme.of(context).colorScheme;
     return Row(
+      mainAxisSize: MainAxisSize.max,
       children: [
         if (onBack != null) ...[
           IconButton(
@@ -20,16 +21,17 @@ class AppHeader extends StatelessWidget {
         ] else
           const SizedBox(width: 4),
         CircleAvatar(
-          radius: 23,
+          radius: 24,
           backgroundColor: esquema.surfaceContainerHighest,
           backgroundImage: const AssetImage('assets/images/profile_avatar.png'),
         ),
-        const SizedBox(width: 14),
+        const SizedBox(width: 16),
         Expanded(
           child: Text(
             'Churras Fácil',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: esquema.primary,
+              fontSize: 30,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -37,11 +39,7 @@ class AppHeader extends StatelessWidget {
         IconButton(
           tooltip: 'Configurações',
           onPressed: () {},
-          icon: Icon(
-            Icons.settings_outlined,
-            size: 30,
-            color: esquema.onSurfaceVariant,
-          ),
+          icon: Icon(Icons.settings_outlined, size: 30, color: esquema.primary),
         ),
       ],
     );

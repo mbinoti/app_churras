@@ -1,0 +1,18 @@
+[
+  {"id":"picanha","nome":"Picanha","categoria":"carnes","unidade":"quilograma","preco_unitario_centavos":6500,"quantidade_por_adulto":0.12,"quantidade_por_crianca":0.06,"aumenta_com_duracao":false},
+  {"id":"linguica","nome":"Linguiça","categoria":"carnes","unidade":"quilograma","preco_unitario_centavos":2500,"quantidade_por_adulto":0.10,"quantidade_por_crianca":0.05,"aumenta_com_duracao":false},
+  {"id":"costela","nome":"Costela","categoria":"carnes","unidade":"quilograma","preco_unitario_centavos":4500,"quantidade_por_adulto":0.14,"quantidade_por_crianca":0.07,"aumenta_com_duracao":false},
+  {"id":"frango","nome":"Frango","categoria":"carnes","unidade":"quilograma","preco_unitario_centavos":1800,"quantidade_por_adulto":0.10,"quantidade_por_crianca":0.05,"aumenta_com_duracao":false},
+  {"id":"coracao","nome":"Coração","categoria":"carnes","unidade":"quilograma","preco_unitario_centavos":3000,"quantidade_por_adulto":0.05,"quantidade_por_crianca":0.025,"aumenta_com_duracao":false},
+  {"id":"cerveja","nome":"Cerveja","categoria":"bebidas","unidade":"lata","preco_unitario_centavos":450,"quantidade_por_adulto":3,"quantidade_por_crianca":0,"aumenta_com_duracao":true},
+  {"id":"refrigerante","nome":"Refrigerante","categoria":"bebidas","unidade":"litro","preco_unitario_centavos":800,"quantidade_por_adulto":0.30,"quantidade_por_crianca":0.20,"aumenta_com_duracao":true},
+  {"id":"agua","nome":"Água","categoria":"bebidas","unidade":"litro","preco_unitario_centavos":250,"quantidade_por_adulto":0.50,"quantidade_por_crianca":0.30,"aumenta_com_duracao":true},
+  {"id":"suco","nome":"Suco","categoria":"bebidas","unidade":"litro","preco_unitario_centavos":1000,"quantidade_por_adulto":0.20,"quantidade_por_crianca":0.30,"aumenta_com_duracao":true},
+  {"id":"pao-de-alho","nome":"Pão de alho","categoria":"acompanhamentos","unidade":"pacote","preco_unitario_centavos":1200,"quantidade_por_adulto":0.25,"quantidade_por_crianca":0.15,"aumenta_com_duracao":false},
+  {"id":"farofa","nome":"Farofa","categoria":"acompanhamentos","unidade":"pacote","preco_unitario_centavos":900,"quantidade_por_adulto":0.20,"quantidade_por_crianca":0.10,"aumenta_com_duracao":false},
+  {"id":"vinagrete","nome":"Vinagrete","categoria":"acompanhamentos","unidade":"pacote","preco_unitario_centavos":1500,"quantidade_por_adulto":0.20,"quantidade_por_crianca":0.10,"aumenta_com_duracao":false},
+  {"id":"queijo-coalho","nome":"Queijo coalho","categoria":"acompanhamentos","unidade":"quilograma","preco_unitario_centavos":3500,"quantidade_por_adulto":0.04,"quantidade_por_crianca":0.02,"aumenta_com_duracao":false},
+  {"id":"carvao","nome":"Carvão","categoria":"materiais","unidade":"saco","preco_unitario_centavos":2500,"quantidade_por_adulto":0.10,"quantidade_por_crianca":0.05,"aumenta_com_duracao":false},
+  {"id":"gelo","nome":"Gelo","categoria":"materiais","unidade":"saco","preco_unitario_centavos":1200,"quantidade_por_adulto":0.15,"quantidade_por_crianca":0.10,"aumenta_com_duracao":true},
+  {"id":"descartaveis","nome":"Descartáveis","categoria":"materiais","unidade":"pacote","preco_unitario_centavos":1800,"quantidade_por_adulto":0.10,"quantidade_por_crianca":0.10,"aumenta_com_duracao":false}
+]

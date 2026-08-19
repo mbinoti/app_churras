@@ -1,26 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../data/repositories/catalogo_repository.dart';
+import '../data/repositories/despesa_repository.dart';
+import '../data/repositories/item_evento_repository.dart';
 import '../data/repositories/evento_repository.dart';
+import '../data/repositories/tarefa_repository.dart';
+import '../features/costs/view/custos_page.dart';
+import '../features/costs/viewmodel/custos_view_model.dart';
 import '../features/home/view/home_page.dart';
 import '../features/home/viewmodel/home_view_model.dart';
-import 'widgets/app_header.dart';
+import '../features/shopping/view/shopping_page.dart';
+import '../features/shopping/viewmodel/shopping_view_model.dart';
+import '../features/tasks/viewmodel/tarefas_view_model.dart';
 import 'app_theme.dart';
 
 class ChurrasFacilApp extends StatelessWidget {
-  const ChurrasFacilApp({required this.eventoRepository, super.key});
+  const ChurrasFacilApp({
+    required this.eventoRepository,
+    this.catalogoRepository,
+    this.eventoItemRepository,
+    this.tarefaRepository,
+    this.despesaRepository,
+    super.key,
+  });
 
   final EventoRepository eventoRepository;
+  final CatalogoRepository? catalogoRepository;
+  final EventoItemRepository? eventoItemRepository;
+  final TarefaRepository? tarefaRepository;
+  final DespesaRepository? despesaRepository;
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         Provider<EventoRepository>.value(value: eventoRepository),
+        Provider<CatalogoRepository?>.value(value: catalogoRepository),
+        Provider<EventoItemRepository?>.value(value: eventoItemRepository),
+        Provider<DespesaRepository?>.value(value: despesaRepository),
         ChangeNotifierProvider(
           create: (_) =>
               HomeViewModel(eventoRepository: eventoRepository)
                 ..carregarEventos(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ShoppingViewModel(
+            eventoRepository: eventoRepository,
+            itemRepository: eventoItemRepository,
+          )..carregar(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TarefasViewModel(
+            eventoRepository: eventoRepository,
+            tarefaRepository: tarefaRepository,
+          )..carregar(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CustosViewModel(
+            eventoRepository: eventoRepository,
+            itemRepository: eventoItemRepository,
+          )..carregar(),
         ),
       ],
       child: MaterialApp(
@@ -48,23 +88,22 @@ class _MainShellState extends State<MainShell> {
     return Scaffold(
       body: IndexedStack(
         index: _indiceSelecionado,
-        children: const [
-          HomePage(),
-          _PlaceholderPage(
-            titulo: 'Compras',
-            icone: Icons.shopping_cart_outlined,
-          ),
-          _PlaceholderPage(titulo: 'Tarefas', icone: Icons.checklist_outlined),
-          _PlaceholderPage(
-            titulo: 'Custos',
-            icone: Icons.account_balance_wallet_outlined,
-          ),
-        ],
+        children: const [HomePage(), ShoppingPage(), CustosPage()],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _indiceSelecionado,
         onDestinationSelected: (indice) {
+          final eventoIdAtual = switch (_indiceSelecionado) {
+            1 => context.read<ShoppingViewModel>().eventoSelecionado?.id,
+            2 => context.read<CustosViewModel>().eventoSelecionado?.id,
+            _ => null,
+          };
           setState(() => _indiceSelecionado = indice);
+          if (indice == 1) {
+            context.read<ShoppingViewModel>().carregar(eventoId: eventoIdAtual);
+          } else if (indice == 2) {
+            context.read<CustosViewModel>().carregar(eventoId: eventoIdAtual);
+          }
         },
         destinations: const [
           NavigationDestination(
@@ -78,60 +117,11 @@ class _MainShellState extends State<MainShell> {
             label: 'Compras',
           ),
           NavigationDestination(
-            icon: Icon(Icons.checklist_outlined),
-            selectedIcon: Icon(Icons.checklist),
-            label: 'Tarefas',
-          ),
-          NavigationDestination(
             icon: Icon(Icons.account_balance_wallet_outlined),
             selectedIcon: Icon(Icons.account_balance_wallet),
             label: 'Custos',
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({required this.titulo, required this.icone});
-
-  final String titulo;
-  final IconData icone;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 18, 20, 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AppHeader(),
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      icone,
-                      size: 56,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(titulo, style: Theme.of(context).textTheme.titleLarge),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Esta área estará disponível em uma próxima sprint.',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

@@ -22,20 +22,21 @@ class EventCard extends StatelessWidget {
     final esquema = Theme.of(context).colorScheme;
     return SizedBox(
       width: compacto ? 302 : null,
+      height: compacto ? 210 : null,
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 14, 8, 14),
+          padding: const EdgeInsets.fromLTRB(18, 18, 12, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Container(
-                    width: 46,
-                    height: 46,
+                    width: 56,
+                    height: 56,
                     decoration: BoxDecoration(
                       color: esquema.tertiaryContainer,
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Icon(
                       evento.tipo == TipoEvento.aniversario
@@ -71,13 +72,13 @@ class EventCard extends StatelessWidget {
                   _EventMenu(onEditar: onEditar, onExcluir: onExcluir),
                 ],
               ),
-              const SizedBox(height: 13),
+              const SizedBox(height: 12),
               Text(
                 evento.nome,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontSize: 19,
+                  fontSize: 21,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -88,7 +89,7 @@ class EventCard extends StatelessWidget {
                   color: esquema.onSurfaceVariant,
                 ),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 6),
               Row(
                 children: [
                   Icon(
@@ -131,19 +132,19 @@ class RecentEventCard extends StatelessWidget {
     return Card(
       color: esquema.surface,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+        padding: const EdgeInsets.fromLTRB(18, 16, 10, 16),
         child: Row(
           children: [
             Container(
-              width: 46,
-              height: 46,
+              width: 58,
+              height: 58,
               decoration: BoxDecoration(
                 color: esquema.surfaceContainerHighest,
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.history, color: esquema.onSurfaceVariant),
             ),
-            const SizedBox(width: 14),
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +157,7 @@ class RecentEventCard extends StatelessWidget {
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 6),
                   Text(
                     formatarData(evento.dataEvento),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
